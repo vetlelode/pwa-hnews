@@ -1,4 +1,6 @@
 # pwa-hnews
+### Hackernews PWA client
+Written mostly for fun, with the aim of having as many buzzword techs as possible. 
 
 ## Project setup
 ```
