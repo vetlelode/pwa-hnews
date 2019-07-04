@@ -5,16 +5,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Index from '@/components/Index.vue'; // @ is an alias to /src
-import Story from '@/components/Story.vue'
+import { Component, Vue } from "vue-property-decorator";
+import Index from "@/components/Index.vue";
+import DisplayStory from "@/components/DisplayStory.vue";
 
 @Component({
     components: {
         Index,
-        Story,
-
-    },
+        DisplayStory
+    }
 })
 export default class Home extends Vue {}
 </script>

@@ -1,31 +1,35 @@
 <template>
     <main>
-        <Story id=1 title="short"/>
-        <Story id=2 title="i'm to long btw like cut me off at some point"/>
-        <Story id=3 title="mordi"/>
-        <Story id=4 title="heio"/>
+        <div v-for="story in stories" v-bind:key="story">
+            <DisplayStory story="story" />
+        </div>
     </main>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import Story  from '@/components/Story.vue';
-import Api from '@/Api';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import DisplayStory from "@/components/DisplayStory.vue";
+import { Api } from "@/Api.ts";
 
 @Component({
     components: {
-        Story,
-    },
+        DisplayStory
+    }
 })
 export default class Index extends Vue {
-    
+    stories!: number[];
+    ids!: 0;
+    mounted() {
+        this.stories = Api.QueryFrontPage();
+        console.log(this.stories);
+    }
 }
 </script>
 <style lang="scss">
-    main {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
+main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 </style>
 
