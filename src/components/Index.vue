@@ -1,7 +1,7 @@
 <template>
     <main>
         <div v-for="story in stories" v-bind:key="story">
-            <DisplayStory story="story" />
+            <DisplayStory :story="story" />
         </div>
     </main>
 </template>
@@ -17,11 +17,9 @@ import { Api } from "@/Api.ts";
     }
 })
 export default class Index extends Vue {
-    stories!: number[];
-    ids!: 0;
+    stories: number[] = [];
     mounted() {
         this.stories = Api.QueryFrontPage();
-        console.log(this.stories);
     }
 }
 </script>

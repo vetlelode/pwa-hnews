@@ -7,12 +7,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Index from "@/components/Index.vue";
-import DisplayStory from "@/components/DisplayStory.vue";
 
 @Component({
     components: {
-        Index,
-        DisplayStory
+        Index
     }
 })
 export default class Home extends Vue {}
