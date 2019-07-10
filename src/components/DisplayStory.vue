@@ -3,11 +3,15 @@
         <aside class="lefty">
             <span>{{ data.score }}</span>
         </aside>
-        <section>{{ data.title }}</section>
-        <aside class="righty">
-            <i class="material-icons">comment</i>
-            <span class="comments">{{ data.descendants }}</span>
-        </aside>
+        <section>
+            <a v-bind:href="data.url">{{ data.title }}</a>
+        </section>
+        <a v-on:click="openComments">
+            <aside class="righty">
+                <i class="material-icons">comment</i>
+                <span class="comments">{{ data.descendants }}</span>
+            </aside>
+        </a>
     </article>
 </template>
 
@@ -37,6 +41,9 @@ export default class DisplayStory extends Vue {
             this.data = data;
         });
     }
+    openComments() {
+        console.log("hei");
+    }
 }
 </script>
 
@@ -55,17 +62,23 @@ article {
     section {
         width: 80%;
         overflow: hidden;
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
     }
     aside.lefty {
-        padding: 0 1rem;
+        padding: 0 0.5rem;
         font-size: 0.8rem;
         width: 10%;
+    }
+    a {
+        width: 10%;
+        padding: 0 0.5rem;
     }
     aside.righty {
         display: flex;
         flex-direction: column;
-        width: 10%;
-        padding: 0 1rem;
         i {
             font-size: 0.7rem;
             margin-bottom: 5px;
