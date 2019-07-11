@@ -14,38 +14,56 @@
                 </aside>
             </a>
         </article>
-        <section class="comments" v-if="showCommments"></section>
+        <section class="comments" v-if="showCommments">
+            <ul>
+                <li v-for="comment in comments" v-bind:key="comment.id">
+                    <p class="author">
+                        {{ comment.by }}
+                        <span>{{ hoursSince(comment.time) }}</span>
+                    </p>
+                    <p class="commentBody" v-html="comment.text"></p>
+                </li>
+            </ul>
+        </section>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Api } from "@/Api.ts";
+import { TimeHandler } from "@/common/TimeHandler.ts"
 import * as stor from "@/Story.ts";
 
 @Component
 export default class DisplayStory extends Vue {
     @Prop({ default: 1 }) story!: number;
-    data: stor.Story = new stor.Story(
+
+    private data: stor.Story = new stor.Story(
         1,
         "a",
         new Date(),
         "",
         [],
         0,
-        "",
+        "loading..",
         0,
         ""
     );
-    showCommments: boolean = false;
-    mounted() {
+    private showCommments: boolean = false;
+    private comments: stor.Comment[] = [];
+
+    private hoursSince(timestamp: Date): string {
+        return TimeHandler.HoursSince(timestamp);
+    }
+    private mounted() {
         let data = Api.QueryStory(this.story);
         data.then(data => {
             this.data = data;
         });
     }
-    openComments() {
-        Api.QueryComments(this.data.getKids());
+    private openComments() {
+        if (this.comments.length == 0)
+            this.comments = Api.QueryComments(this.data.getKids());
         this.showCommments = !this.showCommments;
     }
 }
@@ -56,14 +74,41 @@ div.container {
     display: flex;
     flex-direction: column;
     width: 95%;
-    background-color: rgb(37, 37, 37);
-    border-radius: 5px;
+    background-color: #201c29;
+    border-radius: 0.3rem;
     padding: 1rem 0;
     margin: 0.5rem auto;
     section.comments {
         width: 100%;
-        min-height: 20px;
+        min-height: 50px;
         height: auto;
+        font-size: 0.8rem;
+        ul {
+            padding: 1em;
+            list-style-type: none;
+            li {
+                display: flex;
+                flex-direction: column;
+                padding: 0.5em;
+                p {
+                    margin: 0;
+                    text-align: left;
+                    span {
+                        margin-left: 0.2rem;
+                        font-size: 0.6rem;
+                    }
+                }
+                p.author {
+                    text-align: left;
+                    padding: 0.2em;
+                    padding-left: 0;
+                    margin-bottom: 0.3em;
+                }
+                a {
+                    color: #fff;
+                }
+            }
+        }
     }
 }
 

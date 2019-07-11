@@ -6,7 +6,6 @@ import Axios from 'axios'
 */
 
 export class Api {
-
     //Method for fetching a story or comment from the hnews api
     static QueryStory(id: number): Promise<Story> {
         let promiseData = Axios.get("https://hacker-news.firebaseio.com/v0/item/" + id + ".json")
@@ -51,12 +50,13 @@ export class Api {
         for (let childID of children) {
             Axios.get("https://hacker-news.firebaseio.com/v0/item/" + childID + ".json")
                 .then(response => {
-                    stories.push(new Comment(response.data.id, response.data.parent, response.data.by, new Date(""), response.data.text, response.data.kids,
+                    stories.push(new Comment(response.data.id, response.data.parent, response.data.by, new Date(response.data.time * 1000), response.data.text, response.data.kids,
                         response.data.score, response.data.title, response.data.descendants))
-
+                })
+                .catch(error => {
+                    console.log(error);
                 })
         }
-        console.log(stories);
         return stories;
     }
 
