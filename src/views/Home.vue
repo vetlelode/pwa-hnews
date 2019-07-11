@@ -28,12 +28,12 @@ import Index from "@/components/Index.vue";
 
 @Component({
     components: {
-        Index
-    }
+        Index,
+    },
 })
 export default class Home extends Vue {
-    menu: boolean = false;
-    showMenu() {
+    private menu: boolean = false;
+    private showMenu() {
         this.menu = !this.menu;
     }
 }
@@ -103,4 +103,3 @@ header {
     }
 }
 </style>
-

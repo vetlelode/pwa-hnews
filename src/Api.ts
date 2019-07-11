@@ -1,4 +1,4 @@
-import { Story } from '@/Story'
+import { Story, Comment } from '@/Story'
 import Axios from 'axios'
 
 /*
@@ -18,7 +18,7 @@ export class Api {
                 console.log(error);
             })
         return promiseData.then(data => {
-            return new Story(data.id, "story", data.by, new Date(""), data.text, data.kids,
+            return new Story(data.id, data.by, new Date(""), data.text, data.kids,
                 data.score, data.title, data.descendants, data.url);
         })
     }
@@ -46,11 +46,17 @@ export class Api {
         return stories;
     }
 
-    static QueryComments(children: number[]): number[] {
-        let stories: number[] = [];
+    static QueryComments(children: number[]): Comment[] {
+        let stories: Comment[] = [];
         for (let childID of children) {
-            //Axios.get()
+            Axios.get("https://hacker-news.firebaseio.com/v0/item/" + childID + ".json")
+                .then(response => {
+                    stories.push(new Comment(response.data.id, response.data.parent, response.data.by, new Date(""), response.data.text, response.data.kids,
+                        response.data.score, response.data.title, response.data.descendants))
+
+                })
         }
+        console.log(stories);
         return stories;
     }
 

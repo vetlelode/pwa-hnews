@@ -1,18 +1,21 @@
 <template>
-    <article>
-        <aside class="lefty">
-            <span>{{ data.score }}</span>
-        </aside>
-        <section>
-            <a v-bind:href="data.url">{{ data.title }}</a>
-        </section>
-        <a v-on:click="openComments">
-            <aside class="righty">
-                <i class="material-icons">comment</i>
-                <span class="comments">{{ data.descendants }}</span>
+    <div class="container">
+        <article>
+            <aside class="lefty">
+                <span>{{ data.score }}</span>
             </aside>
-        </a>
-    </article>
+            <section>
+                <a v-bind:href="data.url">{{ data.title }}</a>
+            </section>
+            <a v-on:click="openComments">
+                <aside class="righty">
+                    <i class="material-icons">comment</i>
+                    <span class="comments">{{ data.descendants }}</span>
+                </aside>
+            </a>
+        </article>
+        <section class="comments" v-if="showCommments"></section>
+    </div>
 </template>
 
 <script lang="ts">
@@ -25,7 +28,6 @@ export default class DisplayStory extends Vue {
     @Prop({ default: 1 }) story!: number;
     data: stor.Story = new stor.Story(
         1,
-        "story",
         "a",
         new Date(),
         "",
@@ -35,6 +37,7 @@ export default class DisplayStory extends Vue {
         0,
         ""
     );
+    showCommments: boolean = false;
     mounted() {
         let data = Api.QueryStory(this.story);
         data.then(data => {
@@ -42,31 +45,44 @@ export default class DisplayStory extends Vue {
         });
     }
     openComments() {
-        console.log("hei");
+        Api.QueryComments(this.data.getKids());
+        this.showCommments = !this.showCommments;
     }
 }
 </script>
 
 <style lang="scss">
-article {
+div.container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 95%;
     background-color: rgb(37, 37, 37);
     border-radius: 5px;
     padding: 1rem 0;
     margin: 0.5rem auto;
+    section.comments {
+        width: 100%;
+        min-height: 20px;
+        height: auto;
+    }
+}
+
+article {
+    display: flex;
+    flex-direction: row;
     height: 17px;
     cursor: pointer;
-
     section {
         width: 80%;
         overflow: hidden;
+        white-space: nowrap;
         a {
+            font-size: 0.8rem;
             color: #fff;
             text-decoration: none;
         }
     }
+
     aside.lefty {
         padding: 0 0.5rem;
         font-size: 0.8rem;

@@ -1,8 +1,7 @@
 
 
-abstract class hnewsStory {
+abstract class HnewsStory {
     public id: number;
-    private type: string;
     private by: string;
     private time: Date;
     private text: string;
@@ -11,9 +10,9 @@ abstract class hnewsStory {
     private title: string;
     private descendants: number;
 
-    constructor(id: number, type: string, by: string, time: Date, text: string, kids: number[], score: number, title: string, descendants: number) {
+    constructor(id: number, by: string, time: Date, text: string, kids: number[],
+        score: number, title: string, descendants: number) {
         this.id = id;
-        this.type = type;
         this.by = by;
         this.time = time;
         this.text = text;
@@ -23,22 +22,42 @@ abstract class hnewsStory {
         this.descendants = descendants;
     }
 
-    setTitle(title: string) {
+    public setTitle(title: string) {
         this.title = title;
     }
-    getTitle(): string {
+
+    public getTitle(): string {
         return this.title;
+    }
+
+    public getKids(): number[] {
+        return this.kids;
     }
 
 }
 
-export class Story extends hnewsStory {
+export class Story extends HnewsStory {
     private url: string;
-    constructor(id: number, type: string, by: string, time: Date, text: string, kids: number[], score: number, title: string, descendants: number, url: string) {
-        super(id, type, by, time, text, kids, score, title, descendants);
+    constructor(id: number, by: string, time: Date, text: string, kids: number[],
+        score: number, title: string, descendants: number, url: string) {
+        super(id, by, time, text, kids, score, title, descendants);
         this.url = url;
     }
-    getUrl(): string {
+
+    public getUrl(): string {
         return this.url;
+    }
+}
+
+export class Comment extends HnewsStory {
+    private parent: number;
+    constructor(id: number, parent: number, by: string,
+        time: Date, text: string, kids: number[], score: number, title: string, descendants: number) {
+        super(id, by, time, text, kids, score, title, descendants);
+        this.parent = parent;
+    }
+
+    public getParent(): number {
+        return this.parent;
     }
 }
