@@ -46,5 +46,13 @@ export class Api {
         return stories;
     }
 
+    static QueryComments(children: number[]): number[] {
+        let stories: number[] = [];
+        for (let childID of children) {
+            //Axios.get()
+        }
+        return stories;
+    }
+
 }
 export default { Api };

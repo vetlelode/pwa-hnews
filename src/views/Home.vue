@@ -39,6 +39,7 @@ export default class Home extends Vue {
 }
 </script>
 <style lang="scss">
+/* TODO: Make okish ruleset for desktops */
 nav {
     animation: 150ms slideOut ease-in-out;
     position: absolute;

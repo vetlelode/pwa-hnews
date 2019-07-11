@@ -1,8 +1,6 @@
 
-/*
-    Class for what is defined in the hnews api as "stories"
-*/
-export class Story {
+
+abstract class hnewsStory {
     public id: number;
     private type: string;
     private by: string;
@@ -12,9 +10,8 @@ export class Story {
     private score: number;
     private title: string;
     private descendants: number;
-    private url: string;
 
-    constructor(id: number, type: string, by: string, time: Date, text: string, kids: number[], score: number, title: string, descendants: number, url: string) {
+    constructor(id: number, type: string, by: string, time: Date, text: string, kids: number[], score: number, title: string, descendants: number) {
         this.id = id;
         this.type = type;
         this.by = by;
@@ -24,7 +21,6 @@ export class Story {
         this.score = score;
         this.title = title;
         this.descendants = descendants;
-        this.url = url;
     }
 
     setTitle(title: string) {
@@ -33,9 +29,16 @@ export class Story {
     getTitle(): string {
         return this.title;
     }
+
+}
+
+export class Story extends hnewsStory {
+    private url: string;
+    constructor(id: number, type: string, by: string, time: Date, text: string, kids: number[], score: number, title: string, descendants: number, url: string) {
+        super(id, type, by, time, text, kids, score, title, descendants);
+        this.url = url;
+    }
     getUrl(): string {
         return this.url;
     }
-
-
 }
