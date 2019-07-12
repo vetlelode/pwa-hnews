@@ -15,7 +15,7 @@ export default Vue.extend({});
 
 <style lang="scss">
 body {
-    background-color: rgb(19, 19, 19);
+    background-color: #040c0e;
     padding: 0;
     margin: 0;
     width: 100%;

@@ -14,9 +14,7 @@
                 ><i class="material-icons menuButton">menu</i></a
             >
 
-            <div id="head">
-                { pwa-hnews }
-            </div>
+            <div id="head">{ pwa-hnews }</div>
         </header>
         <Index />
     </div>
@@ -90,6 +88,7 @@ header {
     padding: 1em;
     padding-bottom: 0;
     text-align: left;
+
     a {
         width: 20%;
     }

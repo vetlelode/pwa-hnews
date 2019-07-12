@@ -6,8 +6,10 @@ export class TimeHandler {
         if (hours < 1)
             return Math.round(hours * 60) + " minutes ago"
         else if (hours < 24)
-            return Math.round(hours) + " hours ago"
+            if (hours > 2) return Math.round(hours) + " hours ago"
+            else return Math.round(hours) + " hour ago"
         else
-            return Math.round(hours / 24) + " days ago"
+            if (hours > 2) return Math.round(hours / 24) + " days ago"
+            else return Math.round(hours / 24) + " day ago"
     }
 }

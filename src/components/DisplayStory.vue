@@ -74,7 +74,7 @@ div.container {
     display: flex;
     flex-direction: column;
     width: 95%;
-    background-color: #201c29;
+    background-color: #132226;
     border-radius: 0.3rem;
     padding: 1rem 0;
     margin: 0.5rem auto;
