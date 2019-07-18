@@ -22,8 +22,15 @@
                         <span>{{ hoursSince(comment.time) }}</span>
                     </p>
                     <p class="commentBody" v-html="comment.text"></p>
+                    <DisplayComments
+                        :parent="comment"
+                        v-if="comment.kids != null"
+                    />
                 </li>
             </ul>
+            <a v-on:click="openComments"
+                ><i class="material-icons close">expand_less</i></a
+            >
         </section>
     </div>
 </template>
@@ -31,10 +38,16 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Api } from "@/Api.ts";
-import { TimeHandler } from "@/common/TimeHandler.ts"
-import * as stor from "@/Story.ts";
+import { TimeHandler } from "@/common/TimeHandler.ts";
+import * as stor from "@/model/Story.ts";
+import { Comment } from "@/model/Comment.ts";
+import DisplayComments from "./DisplayComment.vue"
 
-@Component
+@Component({
+    components: {
+        DisplayComments,
+    }
+})
 export default class DisplayStory extends Vue {
     @Prop({ default: 1 }) story!: number;
 
@@ -50,7 +63,7 @@ export default class DisplayStory extends Vue {
         ""
     );
     private showCommments: boolean = false;
-    private comments: stor.Comment[] = [];
+    private comments: Comment[] = [];
 
     private hoursSince(timestamp: Date): string {
         return TimeHandler.HoursSince(timestamp);
@@ -66,6 +79,7 @@ export default class DisplayStory extends Vue {
             this.comments = Api.QueryComments(this.data.getKids());
         this.showCommments = !this.showCommments;
     }
+
 }
 </script>
 
@@ -87,9 +101,11 @@ div.container {
             padding: 1em;
             list-style-type: none;
             li {
+                margin: 0.5em 0;
                 display: flex;
                 flex-direction: column;
-                padding: 0.5em;
+                padding: 0 0.5em;
+                border-left: 1px rgb(202, 202, 202) solid;
                 p {
                     margin: 0;
                     text-align: left;
@@ -109,6 +125,11 @@ div.container {
                 }
             }
         }
+        a {
+            display: block;
+            padding: 0.5em 0;
+            width: 100%;
+        }
     }
 }
 
@@ -122,6 +143,9 @@ article {
         overflow: hidden;
         white-space: nowrap;
         a {
+            padding: 0;
+            display: block;
+            width: 100%;
             font-size: 0.8rem;
             color: #fff;
             text-decoration: none;

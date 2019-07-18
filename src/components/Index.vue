@@ -17,8 +17,8 @@ import { Api } from "@/Api.ts";
     }
 })
 export default class Index extends Vue {
-    stories: number[] = [];
-    mounted() {
+    private stories: number[] = [];
+    private mounted() {
         this.stories = Api.QueryFrontPage();
     }
 }

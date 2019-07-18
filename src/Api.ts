@@ -1,4 +1,5 @@
-import { Story, Comment } from '@/Story'
+import { Story } from '@/model/Story'
+import { Comment } from '@/model/Comment'
 import Axios from 'axios'
 
 /*
@@ -7,19 +8,12 @@ import Axios from 'axios'
 
 export class Api {
     //Method for fetching a story or comment from the hnews api
-    static QueryStory(id: number): Promise<Story> {
-        let promiseData = Axios.get("https://hacker-news.firebaseio.com/v0/item/" + id + ".json")
+    static async QueryStory(id: number): Promise<Story> {
+        return Axios.get("https://hacker-news.firebaseio.com/v0/item/" + id + ".json")
             .then(response => {
-                return response.data
-
+                return new Story(response.data.id, response.data.by, new Date(""), response.data.text, response.data.kids,
+                    response.data.score, response.data.title, response.data.descendants, response.data.url);
             })
-            .catch(error => {
-                console.log(error);
-            })
-        return promiseData.then(data => {
-            return new Story(data.id, data.by, new Date(""), data.text, data.kids,
-                data.score, data.title, data.descendants, data.url);
-        })
     }
 
 
@@ -36,7 +30,7 @@ export class Api {
                         resp = parseInt(resp);
                     if (typeof resp === 'number')
                         stories.push(resp);
-                    i++
+                    i++;
                 }
             })
             .catch(error => {
