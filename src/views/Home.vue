@@ -74,6 +74,7 @@ header {
     flex-direction: inline;
     padding: 1em;
     padding-bottom: 0;
+    color: #dfdfdf;
 
     a {
         width: 20%;

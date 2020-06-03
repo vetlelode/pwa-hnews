@@ -89,7 +89,8 @@ export default class DisplayStory extends Vue {
 div.container {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 97.5%;
+    max-width: 800px;
     background-color: #272121;
     border-radius: 0.3rem;
     padding: 1rem 0;
@@ -99,8 +100,7 @@ div.container {
         min-height: 50px;
         height: auto;
         font-size: 0.8rem;
-        margin-top: 1em;
-        transition: 2000ms ease-in-out;
+        margin-top: 0.5em;
         ul {
             padding: 0 1em;
             padding-right: 0;
