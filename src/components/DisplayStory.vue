@@ -1,11 +1,13 @@
 <template>
     <div class="container">
-        <article>
+        <article v-bind:class="{ big: showCommments }">
             <aside class="lefty">
                 <span>{{ data.score }}</span>
             </aside>
             <section>
-                <a v-bind:href="data.url">{{ data.title }}</a>
+                <a v-bind:href="data.url">
+                    {{ data.title }}
+                </a>
             </section>
             <a v-on:click="openComments">
                 <aside class="righty">
@@ -98,8 +100,10 @@ div.container {
         height: auto;
         font-size: 0.8rem;
         margin-top: 1em;
+        transition: 2000ms ease-in-out;
         ul {
             padding: 0 1em;
+            padding-right: 0;
             list-style-type: none;
             li {
                 margin: 0.5em 0;
@@ -156,6 +160,7 @@ article {
             display: block;
             width: 100%;
             font-size: 0.8rem;
+            margin: 0;
             color: #fff;
             text-decoration: none;
         }
