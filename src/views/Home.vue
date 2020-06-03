@@ -1,19 +1,6 @@
 <template>
     <div class="home">
-        <nav id="menu" v-if="menu">
-            <section><a v-on:click="showMenu">X</a></section>
-            <ul>
-                <li><router-link to="/" class="hei">Home</router-link></li>
-                <li>
-                    <router-link to="/about" class="hei">About</router-link>
-                </li>
-            </ul>
-        </nav>
-        <header id="nav">
-            <a v-on:click="showMenu"
-                ><i class="material-icons menuButton">menu</i></a
-            >
-
+        <header>
             <div id="head">{ pwa-hnews }</div>
         </header>
         <Index />
@@ -87,7 +74,6 @@ header {
     flex-direction: inline;
     padding: 1em;
     padding-bottom: 0;
-    text-align: left;
 
     a {
         width: 20%;
@@ -97,8 +83,8 @@ header {
         cursor: pointer;
     }
     div#head {
-        width: 80%;
-        text-align: right;
+        margin: 0 auto;
+        text-align: center;
     }
 }
 </style>

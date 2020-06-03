@@ -6,6 +6,7 @@
                 <span>{{ hoursSince(kid.time) }}</span>
             </p>
             <p class="commentBody" v-html="kid.text"></p>
+            <DisplayComments :parent="kid" />
         </li>
     </ul>
 </template>
@@ -16,12 +17,30 @@ import { Api } from "@/Api"
 import { Comment } from '../model/Comment';
 import { TimeHandler } from '@/common/TimeHandler'
 
+
 @Component
 export default class DisplayComments extends Vue {
-    @Prop() parent!: Comment;
-    private kids: Comment[] = [];
+    @Prop() public parent!: Comment;
+    public grandkids: [[Number, Comment[]]] = [[0, []]];
+    public kids: Comment[] = [];
+    private beforeCreate() {
+    }
     private mounted() {
         this.kids = Api.QueryComments(this.parent.getKids());
+
+    }
+    private getGrandKids() {
+        console.log("hei" + this.kids)
+        for (let kid of this.kids) {
+            console.log("HEI")
+            let con: Comment[];
+            if (kid.getKids()) {
+                let grandkids = Api.QueryComments(kid.getKids())
+                console.log(grandkids)
+                let entry: [Number, Comment[]] = [kid.id, grandkids]
+                this.grandkids.push(entry)
+            }
+        }
     }
     private hoursSince(timestamp: Date): string {
         return TimeHandler.HoursSince(timestamp);

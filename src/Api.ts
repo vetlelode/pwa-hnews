@@ -45,7 +45,7 @@ export class Api {
             Axios.get("https://hacker-news.firebaseio.com/v0/item/" + childID + ".json")
                 .then(response => {
                     stories.push(new Comment(response.data.id, response.data.parent, response.data.by, new Date(response.data.time * 1000), response.data.text, response.data.kids,
-                        response.data.score, response.data.title, response.data.descendants))
+                        response.data.score, response.data.title, response.data.descendants));
                 })
                 .catch(error => {
                     console.log(error);

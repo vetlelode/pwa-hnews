@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main v-on:keyup.ctrl="openArt">
         <div v-for="story in stories" v-bind:key="story">
             <DisplayStory :story="story" />
         </div>
@@ -20,6 +20,9 @@ export default class Index extends Vue {
     private stories: number[] = [];
     private mounted() {
         this.stories = Api.QueryFrontPage();
+    }
+    private openArt() {
+        console.log("hei");
     }
 }
 </script>

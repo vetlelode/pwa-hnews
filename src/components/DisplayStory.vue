@@ -88,7 +88,7 @@ div.container {
     display: flex;
     flex-direction: column;
     width: 95%;
-    background-color: #132226;
+    background-color: #1a1919;
     border-radius: 0.3rem;
     padding: 1rem 0;
     margin: 0.5rem auto;
@@ -97,16 +97,20 @@ div.container {
         min-height: 50px;
         height: auto;
         font-size: 0.8rem;
+        margin-top: 1em;
         ul {
-            padding: 1em;
+            padding: 0 1em;
             list-style-type: none;
             li {
                 margin: 0.5em 0;
                 display: flex;
                 flex-direction: column;
                 padding: 0 0.5em;
+                overflow: hidden;
                 border-left: 1px rgb(202, 202, 202) solid;
+                margin-bottom: 1em;
                 p {
+                    overflow: hidden;
                     margin: 0;
                     text-align: left;
                     span {
@@ -119,6 +123,8 @@ div.container {
                     padding: 0.2em;
                     padding-left: 0;
                     margin-bottom: 0.3em;
+                    font-style: italic;
+                    font-size: 1.05em;
                 }
                 a {
                     color: #fff;
@@ -128,7 +134,10 @@ div.container {
         a {
             display: block;
             padding: 0.5em 0;
-            width: 100%;
+            width: 95%;
+            background: #1e2223;
+            margin: 0 auto;
+            border-radius: 5px;
         }
     }
 }
