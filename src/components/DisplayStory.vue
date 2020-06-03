@@ -90,7 +90,7 @@ div.container {
     display: flex;
     flex-direction: column;
     width: 95%;
-    background-color: #1a1919;
+    background-color: #272121;
     border-radius: 0.3rem;
     padding: 1rem 0;
     margin: 0.5rem auto;
@@ -111,9 +111,10 @@ div.container {
                 flex-direction: column;
                 padding: 0 0.5em;
                 overflow: hidden;
-                border-left: 1px rgb(202, 202, 202) solid;
+                border-left: 1px #e16428 solid;
                 margin-bottom: 1em;
                 p {
+                    color: #f6e9e9;
                     overflow: hidden;
                     margin: 0;
                     text-align: left;
@@ -129,19 +130,12 @@ div.container {
                     margin-bottom: 0.3em;
                     font-style: italic;
                     font-size: 1.05em;
+                    color: #e16428;
                 }
                 a {
-                    color: #fff;
+                    color: #f6e9e9;
                 }
             }
-        }
-        a {
-            display: block;
-            padding: 0.5em 0;
-            width: 95%;
-            background: #1e2223;
-            margin: 0 auto;
-            border-radius: 5px;
         }
     }
 }
@@ -161,7 +155,7 @@ article {
             width: 100%;
             font-size: 0.8rem;
             margin: 0;
-            color: #fff;
+            color: #f6e9e9;
             text-decoration: none;
         }
     }
