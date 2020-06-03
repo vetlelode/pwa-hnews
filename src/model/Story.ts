@@ -1,6 +1,5 @@
 import { HnewsStory } from './Common'
 
-
 export class Story extends HnewsStory {
     private url: string;
     constructor(id: number, by: string, time: Date, text: string, kids: number[],
@@ -12,6 +11,7 @@ export class Story extends HnewsStory {
     public getUrl(): string {
         return this.url;
     }
+
 }
 
 

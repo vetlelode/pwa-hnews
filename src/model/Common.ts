@@ -1,3 +1,5 @@
+
+
 export abstract class HnewsStory {
     public id: number;
     private by: string;
@@ -31,5 +33,6 @@ export abstract class HnewsStory {
     public getKids(): number[] {
         return this.kids;
     }
+
 
 }

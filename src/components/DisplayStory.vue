@@ -17,22 +17,7 @@
             </a>
         </article>
         <section class="comments" v-if="showCommments">
-            <ul>
-                <li v-for="comment in comments" v-bind:key="comment.id">
-                    <p class="author">
-                        {{ comment.by }}
-                        <span>{{ hoursSince(comment.time) }}</span>
-                    </p>
-                    <p class="commentBody" v-html="comment.text"></p>
-                    <DisplayComments
-                        :parent="comment"
-                        v-if="comment.kids != null"
-                    />
-                </li>
-            </ul>
-            <a v-on:click="openComments"
-                ><i class="material-icons close">expand_less</i></a
-            >
+            <DisplayComments :parent="data" />
         </section>
     </div>
 </template>
@@ -77,8 +62,7 @@ export default class DisplayStory extends Vue {
         });
     }
     private openComments() {
-        if (this.comments.length == 0)
-            this.comments = Api.QueryComments(this.data.getKids());
+        console.log(this.data.getKids());
         this.showCommments = !this.showCommments;
     }
 
@@ -89,55 +73,11 @@ export default class DisplayStory extends Vue {
 div.container {
     display: flex;
     flex-direction: column;
-    width: 97.5%;
     max-width: 800px;
     background-color: #272121;
     border-radius: 0.3rem;
-    padding: 1rem 0;
+    padding: 1rem;
     margin: 0.5rem auto;
-    section.comments {
-        width: 100%;
-        min-height: 50px;
-        height: auto;
-        font-size: 0.8rem;
-        margin-top: 0.5em;
-        ul {
-            padding: 0 1em;
-            padding-right: 0;
-            list-style-type: none;
-            li {
-                margin: 0.5em 0;
-                display: flex;
-                flex-direction: column;
-                padding: 0 0.5em;
-                overflow: hidden;
-                border-left: 1px #e16428 solid;
-                margin-bottom: 1em;
-                p {
-                    color: #f6e9e9;
-                    overflow: hidden;
-                    margin: 0;
-                    text-align: left;
-                    span {
-                        margin-left: 0.2rem;
-                        font-size: 0.6rem;
-                    }
-                }
-                p.author {
-                    text-align: left;
-                    padding: 0.2em;
-                    padding-left: 0;
-                    margin-bottom: 0.3em;
-                    font-style: italic;
-                    font-size: 1.05em;
-                    color: #e16428;
-                }
-                a {
-                    color: #f6e9e9;
-                }
-            }
-        }
-    }
 }
 
 article {
@@ -158,8 +98,11 @@ article {
             color: #f6e9e9;
             text-decoration: none;
         }
+        a:hover {
+            transition: 400ms;
+            color: #e16428;
+        }
     }
-
     aside.lefty {
         padding: 0 0.5rem;
         font-size: 0.8rem;
@@ -168,6 +111,10 @@ article {
     a {
         width: 10%;
         padding: 0 0.5rem;
+    }
+    a:hover {
+        transition: 400ms;
+        color: #e16428;
     }
     aside.righty {
         display: flex;
