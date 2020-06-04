@@ -40,7 +40,8 @@ export default class DisplayComments extends Vue {
 
 
     private mounted() {
-        this.kids = Api.QueryComments(this.parent.getKids());
+        if (this.parent.getKids())
+            this.kids = Api.QueryComments(this.parent.getKids());
     }
     private hoursSince(timestamp: Date): string {
         return TimeHandler.HoursSince(timestamp);
@@ -87,6 +88,7 @@ section.comments {
                 a.lessShow {
                     color: #e16428;
                     font: 1.1em normal;
+                    font-family: "Lucida Console", Monaco, monospace;
                     cursor: pointer;
                     padding: 0 0.5rem;
                 }
