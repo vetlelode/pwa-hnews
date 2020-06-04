@@ -4,14 +4,20 @@
             <p class="author">
                 {{ kid.by }}
                 <span>{{ hoursSince(kid.time) }}</span>
-                <a class="lessShow" v-on:click="hideComment" v-if="display"
+                <a
+                    class="lessShow"
+                    v-on:click="kid.changeDisplay()"
+                    v-if="kid.display"
                     >[-]</a
                 >
-                <a class="lessShow" v-on:click="hideComment" v-if="!display"
+                <a
+                    class="lessShow"
+                    v-on:click="kid.changeDisplay()"
+                    v-if="!kid.display"
                     >[+]</a
                 >
             </p>
-            <div v-if="display">
+            <div v-if="kid.display">
                 <p class="commentBody" v-html="kid.text"></p>
                 <DisplayComments :parent="kid" />
             </div>
@@ -31,17 +37,13 @@ import { Story } from '../model/Story';
 export default class DisplayComments extends Vue {
     @Prop() public parent!: Comment | Story;
     public kids: Comment[] = [];
-    private display: Boolean = true;
-    private beforeCreate() {
-    }
+
+
     private mounted() {
         this.kids = Api.QueryComments(this.parent.getKids());
     }
     private hoursSince(timestamp: Date): string {
         return TimeHandler.HoursSince(timestamp);
-    }
-    private hideComment() {
-        this.display = !this.display;
     }
 }
 </script>
