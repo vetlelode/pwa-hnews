@@ -7,13 +7,13 @@
                 <a
                     class="lessShow"
                     v-on:click="kid.changeDisplay()"
-                    v-show="kid.display"
+                    v-if="kid.display"
                     >[-]</a
                 >
                 <a
                     class="lessShow"
                     v-on:click="kid.changeDisplay()"
-                    v-show="!kid.display"
+                    v-if="!kid.display"
                     >[+]</a
                 >
             </p>

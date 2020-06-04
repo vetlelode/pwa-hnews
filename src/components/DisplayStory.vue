@@ -9,14 +9,14 @@
                     {{ data.title }}
                 </a>
             </section>
-            <a v-on:click="openComments">
+            <a v-on:click="showCommments = !showCommments">
                 <aside class="righty">
                     <i class="material-icons">comment</i>
                     <span class="comments">{{ data.descendants }}</span>
                 </aside>
             </a>
         </article>
-        <section class="comments" v-show="showCommments">
+        <section class="comments" v-if="showCommments">
             <DisplayComments :parent="data" />
         </section>
     </div>
@@ -61,10 +61,7 @@ export default class DisplayStory extends Vue {
             this.data = data;
         });
     }
-    private openComments() {
-        console.log(this.data.getKids());
-        this.showCommments = !this.showCommments;
-    }
+
 
 }
 </script>
