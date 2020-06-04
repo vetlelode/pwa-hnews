@@ -16,7 +16,7 @@
                 </aside>
             </a>
         </article>
-        <section class="comments" v-if="showCommments">
+        <section class="comments" v-show="showCommments">
             <DisplayComments :parent="data" />
         </section>
     </div>

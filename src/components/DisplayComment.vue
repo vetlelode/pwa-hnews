@@ -7,17 +7,17 @@
                 <a
                     class="lessShow"
                     v-on:click="kid.changeDisplay()"
-                    v-if="kid.display"
+                    v-show="kid.display"
                     >[-]</a
                 >
                 <a
                     class="lessShow"
                     v-on:click="kid.changeDisplay()"
-                    v-if="!kid.display"
+                    v-show="!kid.display"
                     >[+]</a
                 >
             </p>
-            <div v-if="kid.display">
+            <div v-show="kid.display">
                 <p class="commentBody" v-html="kid.text"></p>
                 <DisplayComments :parent="kid" />
             </div>
