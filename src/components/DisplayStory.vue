@@ -60,9 +60,7 @@ export default class DisplayStory extends Vue {
     private hoursSince(timestamp: Date): string {
         return TimeHandler.HoursSince(timestamp);
     }
-    private hoursSinceShort(timestamp: Date): string {
-        return TimeHandler.HoursSinceShort(timestamp)
-    }
+
     private mounted() {
         let data = Api.QueryStory(this.story);
         data.then(data => {
@@ -140,13 +138,14 @@ article.big {
             overflow: visible;
         }
         span.meta {
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             color: #e4d7d7;
             margin: 0px;
+            font-style: italic;
         }
         span.url {
             a {
-                font-size: 0.55rem;
+                font-size: 0.6rem;
                 font-style: italic;
                 color: #a59e9e;
             }

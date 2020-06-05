@@ -53,10 +53,9 @@ section.comments {
     width: 100%;
     min-height: 50px;
     height: auto;
-    font-size: 0.7rem;
+    font-size: 0.73rem;
     ul {
-        padding: 0 0em;
-        padding-right: 0;
+        padding: 0;
         list-style-type: none;
         li {
             margin: 0.5em 0;
