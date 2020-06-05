@@ -11,7 +11,7 @@ export class Api {
     static async QueryStory(id: number): Promise<Story> {
         return Axios.get("https://hacker-news.firebaseio.com/v0/item/" + id + ".json")
             .then(response => {
-                return new Story(response.data.id, response.data.by, new Date(""), response.data.text, response.data.kids,
+                return new Story(response.data.id, response.data.by, new Date(response.data.time * 1000), response.data.text, response.data.kids,
                     response.data.score, response.data.title, response.data.descendants, response.data.url);
             })
     }

@@ -8,6 +8,10 @@
                 <a v-bind:href="data.url">
                     {{ data.title }}
                 </a>
+                <span class="url"
+                    >{{ data.score }} points by {{ data.by }}
+                    {{ hoursSince(data.time) }}</span
+                >
             </section>
             <a v-on:click="showCommments = !showCommments">
                 <aside class="righty">
@@ -85,7 +89,6 @@ article {
     section {
         width: 80%;
         overflow: hidden;
-        white-space: nowrap;
         a {
             padding: 0;
             display: block;
@@ -122,6 +125,20 @@ article {
         }
         span.comments {
             font-size: 0.6rem;
+        }
+    }
+}
+article.big {
+    height: auto;
+    section {
+        overflow: visible;
+        a  {
+            word-wrap: break-word;
+            overflow: visible;
+        }
+        span.url {
+            font-size: 0.6rem;
+            color: #e4d7d7;
         }
     }
 }
