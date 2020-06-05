@@ -1,9 +1,7 @@
 <template>
     <div class="container">
         <article v-bind:class="{ big: showCommments }">
-            <aside class="lefty">
-                <span>{{ data.score }}</span>
-            </aside>
+            <aside class="lefty"></aside>
             <section>
                 <a v-bind:href="data.url">
                     {{ data.title }}
@@ -12,7 +10,9 @@
                     >{{ data.score }} points by {{ data.by }}
                     {{ hoursSince(data.time) }}<br
                 /></span>
-                <span class="url" v-bind:href="data.url">({{ data.url }})</span>
+                <span class="url"
+                    ><a v-bind:href="data.url">({{ data.url }})</a></span
+                >
             </section>
             <a v-on:click="showCommments = !showCommments">
                 <aside class="righty">
@@ -78,8 +78,8 @@ export default class DisplayStory extends Vue {
 div.container {
     display: flex;
     flex-direction: column;
-
-    max-width: 90%;
+    max-width: 600px;
+    width: 90%;
     background-color: #272121;
     border-radius: 0.3rem;
     padding: 1rem;
@@ -109,13 +109,11 @@ article {
         }
     }
     aside.lefty {
-        padding: 0 0.5rem;
         font-size: 0.8rem;
         width: 10%;
     }
     a {
         width: 10%;
-        padding: 0 0.5rem;
     }
     a:hover {
         transition: 400ms;
@@ -144,11 +142,14 @@ article.big {
         span.meta {
             font-size: 0.6rem;
             color: #e4d7d7;
+            margin: 0px;
         }
         span.url {
-            font-size: 0.55rem;
-            font-style: italic;
-            color: #a59e9e;
+            a {
+                font-size: 0.55rem;
+                font-style: italic;
+                color: #a59e9e;
+            }
         }
     }
 }
