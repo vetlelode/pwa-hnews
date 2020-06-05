@@ -8,10 +8,11 @@
                 <a v-bind:href="data.url">
                     {{ data.title }}
                 </a>
-                <span class="url"
+                <span class="meta"
                     >{{ data.score }} points by {{ data.by }}
-                    {{ hoursSince(data.time) }}</span
-                >
+                    {{ hoursSince(data.time) }}<br
+                /></span>
+                <span class="url" v-bind:href="data.url">({{ data.url }})</span>
             </section>
             <a v-on:click="showCommments = !showCommments">
                 <aside class="righty">
@@ -59,6 +60,9 @@ export default class DisplayStory extends Vue {
     private hoursSince(timestamp: Date): string {
         return TimeHandler.HoursSince(timestamp);
     }
+    private hoursSinceShort(timestamp: Date): string {
+        return TimeHandler.HoursSinceShort(timestamp)
+    }
     private mounted() {
         let data = Api.QueryStory(this.story);
         data.then(data => {
@@ -74,7 +78,8 @@ export default class DisplayStory extends Vue {
 div.container {
     display: flex;
     flex-direction: column;
-    max-width: 800px;
+
+    max-width: 90%;
     background-color: #272121;
     border-radius: 0.3rem;
     padding: 1rem;
@@ -136,9 +141,14 @@ article.big {
             word-wrap: break-word;
             overflow: visible;
         }
-        span.url {
+        span.meta {
             font-size: 0.6rem;
             color: #e4d7d7;
+        }
+        span.url {
+            font-size: 0.55rem;
+            font-style: italic;
+            color: #a59e9e;
         }
     }
 }

@@ -12,4 +12,15 @@ export class TimeHandler {
             if (hours > 2) return Math.round(hours / 24) + " days ago"
             else return Math.round(hours / 24) + " day ago"
     }
+    static HoursSinceShort(timeStamp: Date): string {
+        let hours = Math.abs(new Date().getTime() - timeStamp.getTime()) / 36e5;
+        if (hours < 1)
+            return Math.round(hours * 60) + "m"
+        else if (hours < 24)
+            if (hours > 2) return Math.round(hours) + "h"
+            else return Math.round(hours) + "h"
+        else
+            if (hours > 2) return Math.round(hours / 24) + "d"
+            else return Math.round(hours / 24) + "d"
+    }
 }
