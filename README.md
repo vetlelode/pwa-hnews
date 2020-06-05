@@ -1,31 +1,6 @@
 # pwa-hnews
 ### Hackernews PWA client
-Written mostly for fun, with the aim of having as many buzzword techs as possible. 
+pwa-hnews is a PWA frontend for Hackernews using the public Hackernews API.
+Made mostly to experiment with PWA's and to toy around with Vue and TS 
+Current version can be found at: https://vetlelode.github.io/pwa-hnews/docs/index.html#/ PS the site currently looks like garbage on desktops
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
