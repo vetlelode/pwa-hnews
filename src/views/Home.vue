@@ -1,9 +1,17 @@
 <template>
     <div class="home">
         <header>
+            <aside class="left">
+                <span class="material-icons"
+                    ><a v-on:click="refresh">refresh</a></span
+                >
+            </aside>
             <div id="head">{ pwa-hnews }</div>
+            <aside class="right">
+                <span class="material-icons"><a href="#">settings</a></span>
+            </aside>
         </header>
-        <Index />
+        <Index :key="reRender" />
     </div>
 </template>
 
@@ -17,10 +25,12 @@ import Index from "@/components/Index.vue";
     },
 })
 export default class Home extends Vue {
+    private reRender: number = 0;
     private menu: boolean = false;
-    private showMenu() {
-        this.menu = !this.menu;
+    private refresh() {
+        this.reRender += 1;
     }
+
 }
 </script>
 <style lang="scss">
@@ -78,6 +88,9 @@ header {
 
     a {
         width: 20%;
+        color: #dfdfdf;
+        text-decoration: none;
+        cursor: pointer;
     }
     a i.menuButton {
         width: 100%;
