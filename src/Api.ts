@@ -18,7 +18,7 @@ export class Api {
 
 
     //Method for fetching the top stories from the hnews frontpage
-    static QueryFrontPage(type: string = "topstories"): number[] {
+    static QueryFrontPage(type: string = "topstories", from: number = 0, to: number = 30): number[] {
         let stories: number[] = [];
         let url: string = ""
         if (type == "topstories" || type == "newstories" || type == "beststories")
@@ -28,9 +28,9 @@ export class Api {
 
         Axios.get(url)
             .then(response => {
-                let i: number = 0;
+                let i: number = from;
                 for (let resp of response.data) {
-                    if (i >= 30)
+                    if (i >= to)
                         break;
                     else if (typeof resp !== 'number')
                         resp = parseInt(resp);
