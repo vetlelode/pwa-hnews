@@ -3,16 +3,15 @@
         <article v-bind:class="{ big: showCommments }">
             <aside class="lefty"></aside>
             <section>
-                <a v-bind:href="data.url">
-                    {{ data.title }}
-                </a>
-                <span class="meta"
-                    >{{ data.score }} points by {{ data.by }}
-                    {{ hoursSince(data.time) }}<br
-                /></span>
-                <span class="url"
-                    ><a v-bind:href="data.url">({{ data.url }})</a></span
-                >
+                <a v-bind:href="data.url">{{ data.title }}</a>
+                <span class="meta">
+                    {{ data.score }} points by {{ data.by }}
+                    {{ hoursSince(data.time) }}
+                    <br />
+                </span>
+                <span class="url">
+                    <a v-bind:href="data.url">({{ data.url }})</a>
+                </span>
             </section>
             <a v-on:click="showCommments = !showCommments">
                 <aside class="righty">
@@ -33,11 +32,11 @@ import { Api } from "@/Api.ts";
 import { TimeHandler } from "@/common/TimeHandler.ts";
 import * as stor from "@/model/Story.ts";
 import { Comment } from "@/model/Comment.ts";
-import DisplayComments from "./DisplayComment.vue"
+import DisplayComments from "./DisplayComment.vue";
 
 @Component({
     components: {
-        DisplayComments,
+        DisplayComments
     }
 })
 export default class DisplayStory extends Vue {
@@ -67,8 +66,6 @@ export default class DisplayStory extends Vue {
             this.data = data;
         });
     }
-
-
 }
 </script>
 
@@ -92,6 +89,7 @@ article {
     section {
         width: 80%;
         overflow: hidden;
+        font-weight: 500;
         a {
             padding: 0;
             display: block;

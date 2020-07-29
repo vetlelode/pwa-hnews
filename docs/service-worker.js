@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.a23cb98b6adccae22942071e5f0cc7d3.js"
+  "/precache-manifest.86fa15c1ddd9c9b51f43d6f6e7a11a1b.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "pwa-hnews"});

@@ -1,10 +1,7 @@
 <template>
     <div id="app">
         <router-view />
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     </div>
 </template>
 <script lang="ts">
@@ -14,6 +11,7 @@ export default Vue.extend({});
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap");
 body {
     background-color: #363333;
     padding: 0;
@@ -21,7 +19,7 @@ body {
     width: 100%;
 }
 #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
