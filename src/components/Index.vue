@@ -19,7 +19,7 @@ import { Api } from "@/Api.ts";
 export default class Index extends Vue {
     private stories: number[] = [];
     private mounted() {
-        this.stories = Api.QueryFrontPage();
+        this.stories = Api.QueryFrontPage("topstories");
     }
 
 }

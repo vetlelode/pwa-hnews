@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <header>
+        <header class="home">
             <aside class="left">
                 <span class="material-icons"
                     ><a v-on:click="refresh">refresh</a></span
@@ -8,20 +8,25 @@
             </aside>
             <div id="head">{ pwa-hnews }</div>
             <aside class="right">
-                <span class="material-icons"><a href="#">settings</a></span>
+                <span class="material-icons"
+                    ><a v-on:click="menu = true">settings</a></span
+                >
             </aside>
         </header>
         <Index :key="reRender" />
+        <Settings v-if="menu" v-on:close="menu = false" />
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Index from "@/components/Index.vue";
+import Settings from "@/components/Settings.vue"
 
 @Component({
     components: {
         Index,
+        Settings,
     },
 })
 export default class Home extends Vue {
@@ -78,13 +83,16 @@ nav {
         width: 100%;
     }
 }
-header {
+header.home {
     height: 24px;
     display: flex;
     flex-direction: inline;
-    padding: 1em;
+    padding: 1rem;
     padding-bottom: 0;
     color: #dfdfdf;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
 
     a {
         width: 20%;

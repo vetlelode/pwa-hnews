@@ -18,9 +18,15 @@ export class Api {
 
 
     //Method for fetching the top stories from the hnews frontpage
-    static QueryFrontPage(): number[] {
+    static QueryFrontPage(type: string = "topstories"): number[] {
         let stories: number[] = [];
-        Axios.get("https://hacker-news.firebaseio.com/v0/topstories.json")
+        let url: string = ""
+        if (type == "topstories" || type == "newstories" || type == "beststories")
+            url = "https://hacker-news.firebaseio.com/v0/" + type + ".json"
+        else
+            url = "https://hacker-news.firebaseio.com/v0/topstories.json"
+
+        Axios.get(url)
             .then(response => {
                 let i: number = 0;
                 for (let resp of response.data) {
