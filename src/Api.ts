@@ -29,14 +29,12 @@ export class Api {
         Axios.get(url)
             .then(response => {
                 let i: number = from;
+                console.log(from, to)
                 for (let resp of response.data) {
-                    if (i >= to)
-                        break;
-                    else if (typeof resp !== 'number')
-                        resp = parseInt(resp);
-                    if (typeof resp === 'number')
-                        stories.push(resp);
-                    i++;
+                    if (i >= from && i <= to) {
+                        stories.push(parseInt(resp))
+                        console.log(i)
+                    } i++;
                 }
             })
             .catch(error => {

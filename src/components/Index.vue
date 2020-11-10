@@ -18,8 +18,8 @@ import { Api } from "@/Api.ts";
 
 @Component({
     components: {
-        DisplayStory
-    }
+        DisplayStory,
+    },
 })
 export default class Index extends Vue {
     private stories: number[] = [];
@@ -27,14 +27,13 @@ export default class Index extends Vue {
         this.stories = Api.QueryFrontPage("topstories");
     }
     private addMore() {
+        console.log(this.stories.length);
         let next30 = Api.QueryFrontPage(
             "topstories",
             this.stories.length,
             this.stories.length + 30
         );
-        for (let story of next30) {
-            console.log(story);
-        }
+        this.stories = next30;
     }
 }
 </script>
@@ -44,6 +43,7 @@ main {
     margin: 0;
     padding: 0;
     div#expand {
+        display: none;
         span a {
             background: #272121;
             padding: 0 0.5em;

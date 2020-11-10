@@ -26,8 +26,8 @@ import Settings from "@/components/Settings.vue";
 @Component({
     components: {
         Index,
-        Settings
-    }
+        Settings,
+    },
 })
 export default class Home extends Vue {
     private reRender: number = 0;
@@ -99,6 +99,9 @@ header.home {
     div#head {
         margin: 0 auto;
         text-align: center;
+    }
+    aside {
+        display: none;
     }
 }
 </style>
